@@ -1,0 +1,34 @@
+<div>
+  <h2>QUIZ MAKER</h2>
+  <div>
+    <form #myForm="ngForm" (submit)="createQuiz(myForm.value)" novalidate>
+      <select name="categorySelect" id="categorySelect" placeholder="Select a Category" ngModel>
+        <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
+      </select>
+        <select name="difficultySelect" id="difficultySelect" ngModel>
+          <option *ngFor="let difficultyLevel of difficulties">{{difficultyLevel}}</option>
+        </select><button type="submit" id="createBtn" >Create</button>
+        </form>
+  </div>
+  <div *ngIf="quizDetails.length>0">
+    <div class="quiz-container">
+      <div class="quiz-question" *ngFor="let question of quizDetails; let questionIndex = index;">
+        <h4>{{sanitizeText(question.question) }}</h4>
+        <div class="quiz-answer inner button">
+          <button
+            *ngFor="let answer of question.answers; let answerIndex = index;"
+            [class.selected]="isSelected(questionIndex, answerIndex)"
+            (click)="selectAnswer(questionIndex, answerIndex)"
+          >
+            {{ sanitizeText(answer) }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="selectedAnswers.length==5"> <button type="submit" (click)="submitQuiz(quizDetails)" >Submit</button></div>
+    </div>
+    
+  </div>
+  <ng-container>
+    <span>{{noQuestions}}</span>
+  </ng-container>
+</div>

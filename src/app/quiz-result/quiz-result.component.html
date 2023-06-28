@@ -1,0 +1,31 @@
+<div>
+    <h2>Results</h2>
+    <div *ngIf="quizDetails.length>0">
+      <div class="quiz-container">
+        <div class="quiz-question" *ngFor="let question of quizDetails; let questionIndex = index;">
+          <h4>{{sanitizeText(question.question) }}</h4>
+          <div class="quiz-answer  resultbutton"   >
+            <button
+              *ngFor="let answer of question.answers; let answerIndex = index;"
+              
+              [ngStyle]="{
+                'background-color': answer === quizDetails[questionIndex].selected_answer
+                  ? (answer === quizDetails[questionIndex].correct_answer ? 'green' : 'red')
+                  : '',
+               
+              }"
+            >
+              {{ sanitizeText(answer) }} {{answer === quizDetails[questionIndex].correct_answer}}
+            </button>
+          </div>
+        </div>
+        <div class="statement-div"
+        [ngClass]="quizDetails[0].currect==4||quizDetails[0].currect==5? 'green' : (quizDetails[0].currect==2||quizDetails[0].currect==3)?'yellow':'red'">{{resultStatement}} </div>
+        <div >
+           <button type="submit" (click)="createQuiz()" >Create a new Quiz</button></div>
+      </div>
+      
+    </div>
+    
+  </div>
+  

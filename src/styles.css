@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+.inner{
+    display: inline-block;
+}
+
+
+.button {
+    background-color: white; 
+    color: black; 
+    margin-right: 10px;
+    
+  }
+  .resultbutton {
+    background-color: white; 
+    color: black; 
+    margin-right: 10px;
+    
+  }
+ .inner button:hover {
+    background-color: #4CAF50;
+    
+  }
+ 
+  .success{
+    background-color: #4CAF50;
+  }
+  /* .danger{
+    background-color:transparent;
+  } */
+
+  .green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+
+.quiz-container {
+  
+}
+
+.quiz-question {
+  margin-bottom: 10px; /* Adjust the margin bottom as needed */
+}
+
+.quiz-question h4 {
+  margin-bottom: 5px; /* Adjust the margin bottom as needed */
+}
+
+.quiz-answer button {
+  /* Add your styles for the answer buttons */
+  /* Example styles: */
+  display: inline-block;
+  /* padding: 8px 16px; */
+  margin: 4px;
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #000;
+}
+
+.quiz-answer button.selected {
+  /* Add your styles for the selected answer button */
+  /* Example styles: */
+  background-color:rgb(93, 245, 93);
+}
+
+.statement-div {
+  width: 200px; /* Specify the desired width value */
+}
+
+.correct{
+  background-color: green;
+}
+.wrong{
+  background-color: red;
+}
