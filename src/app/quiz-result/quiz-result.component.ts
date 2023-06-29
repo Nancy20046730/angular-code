@@ -8,6 +8,7 @@ import { QuizDetails } from '../models/quizDetails';
   styleUrls: ['./quiz-result.component.css']
 })
 export class QuizResultComponent implements OnInit{
+	test:string='';
   quizDetails:QuizDetails[]=[];
   resultStatement:string='';
   constructor(private quizService:QuizMakerService,private router: Router){}
