@@ -2,10 +2,12 @@
   <h2>QUIZ MAKER</h2>
   <div>
     <form #myForm="ngForm" (submit)="createQuiz(myForm.value)" novalidate>
-      <select name="categorySelect" id="categorySelect" placeholder="Select a Category" ngModel>
+      <select class ="dropdown" name="categorySelect" id="categorySelect" placeholder="Select a Category" ngModel>
+        <option  value="" class="gray">Select a Category</option>
         <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
       </select>
         <select name="difficultySelect" id="difficultySelect" ngModel>
+          <option  value="" class="gray">Select difficulty</option>
           <option *ngFor="let difficultyLevel of difficulties">{{difficultyLevel}}</option>
         </select><button type="submit" id="createBtn" >Create</button>
         </form>
@@ -15,7 +17,7 @@
       <div class="quiz-question" *ngFor="let question of quizDetails; let questionIndex = index;">
         <h4>{{sanitizeText(question.question) }}</h4>
         <div class="quiz-answer inner button">
-          <button
+          <button  
             *ngFor="let answer of question.answers; let answerIndex = index;"
             [class.selected]="isSelected(questionIndex, answerIndex)"
             (click)="selectAnswer(questionIndex, answerIndex)"
@@ -24,11 +26,12 @@
           </button>
         </div>
       </div>
-      <div *ngIf="selectedAnswers.length==5"> <button type="submit" (click)="submitQuiz(quizDetails)" >Submit</button></div>
+      <div *ngIf="areAllQuestionsAnswered()" > 
+        <button type="submit" (click)="submitQuiz(quizDetails)" >Submit</button></div>
     </div>
     
   </div>
-  <ng-container>
-    <span>{{noQuestions}}</span>
-  </ng-container>
+  <div class="spanmargin">
+    <span  class="spanmargin">{{noQuestions}}</span>
+  </div>
 </div>

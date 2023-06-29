@@ -8,7 +8,6 @@ import { QuizMakerComponent } from './quiz-maker/quiz-maker.component';
 import { QuizResultComponent } from './quiz-result/quiz-result.component';
 import { QuizMakerService } from './services/quiz-maker.service';
 import { FormsModule } from '@angular/forms';
-import { HighlightDirective } from './directive/highlight.directive';
 import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
@@ -24,7 +23,7 @@ import { CommonModule } from '@angular/common';
      CommonModule 
        
   ],
-  providers: [ QuizMakerService ,HighlightDirective],
+  providers: [ QuizMakerService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

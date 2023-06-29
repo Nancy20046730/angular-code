@@ -4,6 +4,7 @@ import { Category } from '../models/category';
 import { Quiz } from '../models/quiz';
 import { QuizDetails } from '../models/quizDetails';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-quiz-maker',
   templateUrl: './quiz-maker.component.html',
@@ -16,18 +17,27 @@ export class QuizMakerComponent implements OnInit {
   quizDetails:QuizDetails[]=[];
   noQuestions:string='';
  questions:string[]=[];
-  //status:boolean=false
+ toggle :boolean= false;
+
+ selectedButtonIndex: number=-1;
+ selectedRowIndex:number=-1;
+ 
+ selectedAnswers: number[] = [];
   constructor(private quizService:QuizMakerService,private router: Router){}
 
   ngOnInit(): void {
     this.getCategories();
+    this.selectedAnswers=[];
   }
   getCategories():void{
     this.quizService.getQuizCategories().subscribe(
         res => {
           const obj = JSON.parse(JSON.stringify(res));
             this.categories =  obj.trivia_categories;
-        }
+        },
+        err => {
+          console.log(err);
+      }
     );
 }
 createQuiz(inputParam:Quiz){
@@ -55,15 +65,6 @@ this.questions.push(this.quizDetails[i].question);
       })  ;
 
 }
-clickEvent():void{
- // this.status=true;
-}
-toggle :boolean= false;
-
-selectedButtonIndex: number=-1;
-selectedRowIndex:number=-1;
-
-selectedAnswers: number[] = [];
 
 selectAnswer(questionIndex: number, answerIndex: number) {
   this.selectedAnswers[questionIndex] = answerIndex;
@@ -104,8 +105,20 @@ for(let i=0;i<quizDetails.length;i++){
           quizDetails[0].currect=currect;
           quizDetails[0].wrong=wrong;
 this.quizService.setQuizData(quizDetails);
+
    this.router.navigate(['/quiz-result']);
 }
 
+areAllQuestionsAnswered(): boolean {
+  console.log(this.selectedAnswers.length);
+  let length=0;
+  for(let i=0;i<this.selectedAnswers.length;i++){
+    if(this.selectedAnswers[i]!==undefined)
+    length++;
+  }
+  console.log("Length** "+length)
+
+  return length===5 ;
+}
 
 }

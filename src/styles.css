@@ -39,8 +39,8 @@
   background-color: yellow;
 }
 
-.quiz-container {
-  
+.gray {
+  background-color: rgb(199, 180, 180);
 }
 
 .quiz-question {
@@ -70,6 +70,8 @@
 }
 
 .statement-div {
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 200px; /* Specify the desired width value */
 }
 
@@ -78,4 +80,14 @@
 }
 .wrong{
   background-color: red;
+}
+.dropdown {
+  min-width: auto; 
+  width: auto;
+}
+
+.spanmargin{
+  margin-top: 10px;
+   background-color: orange;
+   width: 500px;
 }

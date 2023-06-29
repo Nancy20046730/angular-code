@@ -22,9 +22,11 @@ return this.httpClient.get<QuizDetails[]>(url);
 
 setQuizData(quizDetails:QuizDetails[]):void{
   this.quizData =  quizDetails;
+  localStorage.setItem('quizData', JSON.stringify( this.quizData)); 
 }
 
-getQuizData() {
+getQuizData() : QuizDetails[]{
+  localStorage.setItem('quizData', JSON.stringify( this.quizData)); 
   return this.quizData;
 }
 }

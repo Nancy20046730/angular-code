@@ -8,18 +8,21 @@ import { QuizDetails } from '../models/quizDetails';
   styleUrls: ['./quiz-result.component.css']
 })
 export class QuizResultComponent implements OnInit{
-	test:string='';
   quizDetails:QuizDetails[]=[];
   resultStatement:string='';
   constructor(private quizService:QuizMakerService,private router: Router){}
 
   ngOnInit(): void {
-   this.quizDetails= this.quizService.getQuizData();
-   console.log(this.quizDetails);
-   this.resultStatement="You scored "+this.quizDetails[0].currect+" out of 5";
 
+    const storedData = localStorage.getItem('quizData');
+    if (storedData) {
+      this.quizDetails = JSON.parse(storedData);
+      this.resultStatement="You scored "+this.quizDetails[0].currect+" out of 5";
+    } else {
+      this.quizDetails=this.quizService.getQuizData();
+      this.resultStatement="You scored "+this.quizDetails[0].currect+" out of 5"; // Fetch the data if not found in local storage
+    }
 
-   
   }
   createQuiz():void{
     this.router.navigate(['/']);
@@ -34,11 +37,5 @@ export class QuizResultComponent implements OnInit{
     }
     
     return sanitizedString;
-  }
-  isCorrect(answer:string,currectAns:string):boolean{
-
-if(answer===currectAns)
-return true;
-return false
   }
 }
