@@ -9,21 +9,17 @@ import { QuizResultComponent } from './quiz-result/quiz-result.component';
 import { QuizMakerService } from './services/quiz-maker.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import 'zone.js';
 @NgModule({
-  declarations: [
-    AppComponent,
-    QuizMakerComponent,
-    QuizResultComponent
-  ],
+  declarations: [AppComponent, QuizMakerComponent, QuizResultComponent],
   imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-		 FormsModule,
-     CommonModule 
-       
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    CommonModule,
   ],
-  providers: [ QuizMakerService ],
-  bootstrap: [AppComponent]
+  providers: [QuizMakerService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
